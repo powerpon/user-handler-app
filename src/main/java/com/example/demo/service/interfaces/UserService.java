@@ -3,7 +3,6 @@ package com.example.demo.service.interfaces;
 import com.example.demo.dtos.RegisterDTO;
 import com.example.demo.dtos.UserDetailsDTO;
 import com.example.demo.model.AppUser;
-import com.example.demo.model.Identity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService extends UserDetailsService {

@@ -2,11 +2,6 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.security.core.GrantedAuthority;
-
-import java.util.Collection;
-import java.util.List;
 
 @Getter
 @Setter

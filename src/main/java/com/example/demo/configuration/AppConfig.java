@@ -1,11 +1,6 @@
 package com.example.demo.configuration;
 
 import com.example.demo.dtos.RegisterDTO;
-import com.example.demo.model.AppRole;
-import com.example.demo.model.Identity;
-import com.example.demo.repository.IdentityRepository;
-import com.example.demo.repository.RoleRepository;
-import com.example.demo.repository.UserRepository;
 import com.example.demo.service.interfaces.IdentityService;
 import com.example.demo.service.interfaces.RoleService;
 import com.example.demo.service.interfaces.UserService;

@@ -1,15 +1,11 @@
 package com.example.demo.controller;
 
 import com.example.demo.dtos.RoleDTO;
-import com.example.demo.dtos.UsernameRoleNameDTO;
-import com.example.demo.model.AppRole;
 import com.example.demo.model.AppUser;
 import com.example.demo.model.Identity;
 import com.example.demo.service.interfaces.IdentityService;
-import com.example.demo.service.interfaces.RoleService;
 import com.example.demo.service.interfaces.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

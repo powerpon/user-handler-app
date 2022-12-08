@@ -5,10 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.io.Serializable;
 import java.util.*;
 
 @Getter
