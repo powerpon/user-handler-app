@@ -1,9 +1,6 @@
 package com.example.demo.exception.advice;
 
-import com.example.demo.exception.IdentityDoesNotExistException;
-import com.example.demo.exception.MissingRefreshTokenException;
-import com.example.demo.exception.RoleDoesNotExistException;
-import com.example.demo.exception.UserDoesNotExistException;
+import com.example.demo.exception.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
@@ -55,6 +52,17 @@ public class ControllerExceptionHandler {
     public ErrorMessage missingRefreshToken(MissingRefreshTokenException exception, WebRequest webRequest){
         return new ErrorMessage(
                 HttpStatus.NOT_FOUND.value(),
+                Instant.now(),
+                exception.getMessage(),
+                webRequest.getDescription(true)
+        );
+    }
+
+    @ExceptionHandler(PasswordMismatchException.class)
+    @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE)
+    public ErrorMessage incorrectPassword(PasswordMismatchException exception, WebRequest webRequest){
+        return new ErrorMessage(
+                HttpStatus.NOT_ACCEPTABLE.value(),
                 Instant.now(),
                 exception.getMessage(),
                 webRequest.getDescription(true)

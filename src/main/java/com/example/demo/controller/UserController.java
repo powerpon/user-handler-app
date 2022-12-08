@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.dtos.RoleDTO;
+import com.example.demo.dtos.UserChangePasswordDTO;
 import com.example.demo.model.AppUser;
-import com.example.demo.model.Identity;
-import com.example.demo.service.interfaces.IdentityService;
 import com.example.demo.service.interfaces.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,12 +9,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
 
-    private final IdentityService identityService;
     private final UserService userService;
 
     @GetMapping("/profile")
@@ -26,8 +25,8 @@ public class UserController {
     }
 
     @PutMapping("/addRoleToUser")
-    public ResponseEntity<Identity> addRoleToUser(@RequestParam String username, @RequestBody RoleDTO roleDTO){
-        return ResponseEntity.ok().body(identityService.updateUserIdentityAddRole(username, roleDTO.getName()));
+    public ResponseEntity<AppUser> addRoleToUser(@RequestParam String username, @RequestParam String roleName){
+        return ResponseEntity.ok().body(userService.updateUserAddRole(username, roleName));
     }
 
     @DeleteMapping("/delete")
@@ -37,5 +36,20 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/getUsers/byRole")
+    public ResponseEntity<List<AppUser>> getUsersByRole(@RequestParam String roleName, @RequestParam Long page){
+        return ResponseEntity.ok().body(userService.getUsersByRole(roleName, page));
+    }
+
+    @PutMapping("/removeRoleFromUser")
+    public ResponseEntity<AppUser> removeRoleFromUser(@RequestParam String username, @RequestParam String roleName){
+        return ResponseEntity.ok().body(userService.updateUserRemoveRole(username, roleName));
+    }
+
+    @PutMapping("/changePassword")
+    public ResponseEntity<AppUser> changeUserPassword(@RequestBody UserChangePasswordDTO userChangePasswordDTO){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return ResponseEntity.ok().body(userService.updateUserPassword(authentication.getName(), userChangePasswordDTO));
+    }
 
 }

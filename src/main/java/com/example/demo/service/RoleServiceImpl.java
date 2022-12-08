@@ -2,12 +2,15 @@ package com.example.demo.service;
 
 import com.example.demo.exception.RoleDoesNotExistException;
 import com.example.demo.model.AppRole;
+import com.example.demo.model.Identity;
+import com.example.demo.repository.IdentityRepository;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.service.interfaces.RoleService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,6 +19,7 @@ import java.util.Optional;
 public class RoleServiceImpl implements RoleService {
 
     private final RoleRepository roleRepository;
+    private final IdentityRepository identityRepository;
 
     @Override
     public AppRole saveRole(String roleName) {
@@ -40,6 +44,12 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void deleteRole(String roleName) {
+        List<Identity> identities = identityRepository.findByRolesName(roleName, null).stream().toList();
+        identities.forEach(
+                identity -> {
+                    identity.getRoles().remove(this.getRole(roleName));
+                }
+        );
         roleRepository.delete(this.getRole(roleName));
     }
 
