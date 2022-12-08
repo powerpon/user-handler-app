@@ -1,10 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.*;
@@ -24,7 +21,7 @@ public class Identity {
     private String username;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<AppRole> roles = new ArrayList<>();
+    private Set<AppRole> roles = new HashSet<>();
 
     public Identity(String username, String password) {
         this.username = username;

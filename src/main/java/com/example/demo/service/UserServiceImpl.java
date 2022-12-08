@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(String username) {
         AppUser user = getUserByUsername(username);
-        identityService.deleteUserIdentity(user.getIdentity());
+        userRepository.delete(user);
     }
 
     @Override

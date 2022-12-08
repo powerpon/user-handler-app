@@ -14,7 +14,7 @@ public class AppUser {
     private String id;
     @MapsId
     @JoinColumn(name = "identity_id")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Identity identity;
     private String firstName;
     private String lastName;
