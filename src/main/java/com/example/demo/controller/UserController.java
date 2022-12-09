@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dtos.UserChangePasswordDTO;
+import com.example.demo.dtos.UserDetailsDTO;
 import com.example.demo.model.AppUser;
 import com.example.demo.service.interfaces.UserService;
 import lombok.RequiredArgsConstructor;
@@ -50,6 +51,12 @@ public class UserController {
     public ResponseEntity<AppUser> changeUserPassword(@RequestBody UserChangePasswordDTO userChangePasswordDTO){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return ResponseEntity.ok().body(userService.updateUserPassword(authentication.getName(), userChangePasswordDTO));
+    }
+
+    @PutMapping("/change/details")
+    public ResponseEntity<AppUser> changeUserDetails(@RequestBody UserDetailsDTO userDetailsDTO){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return ResponseEntity.ok().body(userService.updateUserDetails(authentication.getName(), userDetailsDTO));
     }
 
 }
