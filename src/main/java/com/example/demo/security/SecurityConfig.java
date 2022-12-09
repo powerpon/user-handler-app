@@ -46,7 +46,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/login/**", "/register/**", "/refreshAccessToken/**")
                 .permitAll()
-                .requestMatchers("/user/profile/**", "/user/delete/**", "/user/changePassword/**", "/user/change/details/**")
+                .requestMatchers("/user/profile/**", "/user/delete/**", "/user/changePassword/**", "/user/change/details/**", "/user/get/users/**")
                 .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .requestMatchers("/role/create/**", "/user/addRoleToUser/**", "/role/get/**", "/role/change/name/**", "/role/delete/**", "/user/getUsers/byRole/**", "/user/removeRoleFromUser/**")
                 .hasAnyAuthority("ROLE_ADMIN")

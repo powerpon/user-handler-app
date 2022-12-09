@@ -12,6 +12,7 @@ public interface UserService extends UserDetailsService {
 
     AppUser saveUser(RegisterDTO registerDTO);
     AppUser getUserByUsername(String username);
+    List<AppUser> getAllUsersByPage(Long page);
     List<AppUser> getUsersByRole(String roleName, Long page);
     AppUser updateUserDetails(String username, UserDetailsDTO userDetailsDTO);
     AppUser updateUserAddRole(String username, String roleName);

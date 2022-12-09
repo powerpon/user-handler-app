@@ -59,4 +59,9 @@ public class UserController {
         return ResponseEntity.ok().body(userService.updateUserDetails(authentication.getName(), userDetailsDTO));
     }
 
+    @GetMapping("/get/users")
+    public ResponseEntity<List<AppUser>> getUsersByPage(@RequestParam Long page){
+        return ResponseEntity.ok().body(userService.getAllUsersByPage(page));
+    }
+
 }

@@ -13,6 +13,7 @@ import com.example.demo.service.interfaces.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -58,6 +59,11 @@ public class UserServiceImpl implements UserService {
             throw new UserDoesNotExistException();
         }
         return user.get();
+    }
+
+    @Override
+    public List<AppUser> getAllUsersByPage(Long page) {
+        return userRepository.findAll(PageRequest.of(Math.toIntExact(page), 5)).stream().toList();
     }
 
     @Override
